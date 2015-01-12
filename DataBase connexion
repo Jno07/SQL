@@ -1,5 +1,16 @@
 <?php
-//Simple way
+//Ouverture de la base
 $bdd = new PDO('mysql:host=XXX_your_host_XXX;dbname=XXX_database_name_XXX', 'XXX_User_XXX', 'XXX_Password_XXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+//Requête
 $reponse = $bdd->query('XXX_Your_SQL_Query_XXX');
+
+//Traitement des données reçues
+while ($donnees = $reponse->fetch())
+{
+	//Instructions, par exemple : echo $donnees['categorie'];
+}
+
+//Terminer le traitement de la requête
+$reponse->closeCursor();
 ?>
