@@ -2,8 +2,12 @@
 //Ouverture de la base
 $bdd = new PDO('mysql:host=XXX_your_host_XXX;dbname=XXX_database_name_XXX', 'XXX_User_XXX', 'XXX_Password_XXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-//Requête
+//Requête directe
 $reponse = $bdd->query('XXX_Your_SQL_Query_XXX');
+
+//Requête nominative
+$req = $bdd->prepare('SELECT * FROM table WHERE champ1 = :varchamp1 AND champ2 <= :varchamp2');
+$req->execute(array('varchamp1' => $varChamp1, 'varchamp2' => $varChamp2));
 
 //Traitement des données reçues
 while ($donnees = $reponse->fetch())
