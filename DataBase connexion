@@ -10,7 +10,7 @@ $req = $bdd->prepare('SELECT * FROM table WHERE champ1 = :varchamp1 AND champ2 <
 $req->execute(array('varchamp1' => $varChamp1, 'varchamp2' => $varChamp2));
 
 //Traitement des données reçues
-while ($donnees = $reponse->fetch())
+while ($donnees = $req->fetch()) 		//$req ou alors $reponse si requête directe
 {
 	//Instructions, par exemple : echo $donnees['categorie'];
 }
