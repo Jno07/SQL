@@ -1,0 +1,5 @@
+<?php
+//Simple way
+$bdd = new PDO('mysql:host=XXX_your_host_XXX;dbname=XXX_database_name_XXX', 'XXX_User_XXX', 'XXX_Password_XXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$reponse = $bdd->query('XXX_Your_SQL_Query_XXX');
+?>
