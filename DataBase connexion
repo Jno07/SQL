@@ -1,6 +1,7 @@
 <?php
-//Ouverture de la base
+//Ouverture de la base et forçage de l'encodage en UTF-8
 $bdd = new PDO('mysql:host=XXX_your_host_XXX;dbname=XXX_database_name_XXX', 'XXX_User_XXX', 'XXX_Password_XXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd->exec("SET CHARACTER SET utf8");
 
 //Requête nominative
 $req = $bdd->prepare('SELECT * FROM table WHERE champ1 = :varchamp1 AND champ2 <= :varchamp2');
