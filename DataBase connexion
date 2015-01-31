@@ -1,18 +1,22 @@
 <?php
-//Ouverture de la base et forçage de l'encodage en UTF-8
-$bdd = new PDO('mysql:host=XXX_your_host_XXX;dbname=XXX_database_name_XXX', 'XXX_User_XXX', 'XXX_Password_XXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$bdd->exec("SET CHARACTER SET utf8");
 
-//Requête nominative
-$req = $bdd->prepare('SELECT * FROM table WHERE champ1 = :varchamp1 AND champ2 <= :varchamp2');
-$req->execute(array('varchamp1' => $varChamp1, 'varchamp2' => $varChamp2));
-
-//Traitement des données reçues
-while ($donnees = $req->fetch())
-{
-	//Instructions, par exemple : echo $donnees['categorie'];
-}
-
-//Terminer le traitement de la requête
-$req->closeCursor();
+	//Ordre encodage UTF-8 ... A METTRE EN EN-TETE DE PAGE (avant tout code html)
+	header( 'content-type: text/html; charset=utf-8' );
+	
+	//Ouverture de la base et forçage de l'encodage en UTF-8
+	$bdd = new PDO('mysql:host=XXX_your_host_XXX;dbname=XXX_database_name_XXX', 'XXX_User_XXX', 'XXX_Password_XXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+	$bdd->exec("SET CHARACTER SET utf8");
+	
+	//Requête nominative
+	$req = $bdd->prepare('SELECT * FROM table WHERE champ1 = :varchamp1 AND champ2 <= :varchamp2');
+	$req->execute(array('varchamp1' => $varChamp1, 'varchamp2' => $varChamp2));
+	
+	//Traitement des données reçues
+	while ($donnees = $req->fetch())
+	{
+		//Instructions, par exemple : echo $donnees['categorie'];
+	}
+	
+	//Terminer le traitement de la requête
+	$req->closeCursor();
 ?>
