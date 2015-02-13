@@ -1,0 +1,33 @@
+<?php	
+	//Fonction d'ouverture de la base selon l'environnement de travail (local ou distant)
+	function ouvreMaBase()
+	{
+		// Définition de la variable qui servira à définir la BDD locale ou distante
+		if(isset($_SESSION['local_distant'])) 
+		{
+			if( ($_SESSION['local_distant'] != "local") && ($_SESSION['local_distant'] != "distant") )
+			{
+				$_SESSION['local_distant'] = "distant" ;
+			}
+		}
+		else 
+		{
+			$_SESSION['local_distant'] = "distant" ;
+		}
+		
+		// Ouverture de la base
+		if($_SESSION['local_distant'] == "local")
+		{
+			$bdd = new PDO('mysql:host=localhost;dbname=XXbaseDeDonneesXX', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		}
+		else
+		{
+			$bdd = new PDO('mysql:host=XXHoteDistantXX;dbname=XXbaseDeDonneesXX', 'XXuserXX', 'XXpasswordXX', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		}
+		
+		$bdd->exec("SET CHARACTER SET utf8"); // Forçage de l'encodage
+		return ($bdd) ;
+	} // FIN fonction ouvreMaBase
+?>
+
+Remarque : Penser à fermer chaque requête après utilisation avec la fonction closeCursor()
