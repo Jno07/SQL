@@ -16,16 +16,16 @@
     if($_SERVER['HTTP_HOST'] == 'localhost')
     {
         // Serveur LOCAL
-        $host = 'localhost';                // Hote
-        $user = 'root';                     // Utilisateur 
-        $password = '';                     // Mot de passe (root pour les MAC)
+        $host = 'localhost';    // Hote
+        $user = 'root';         // Utilisateur 
+        $password = '';         // Mot de passe (root pour les MAC)
     }
     else
     {
         // Serveur DISTANT
-        $host = 'yourdatabase.mysql.db';// Hote
-        $user = 'yourdatabase';         // Utilisateur
-        $password = 'xxxpasswordxxx';         // Mot de passe
+        $host = 'yourdatabase.mysql.db';    // Hote
+        $user = 'yourdatabase';             // Utilisateur
+        $password = 'xxxpasswordxxx';       // Mot de passe
     }
 
     // CONNECTION TRY/CATCH
