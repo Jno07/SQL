@@ -30,13 +30,11 @@
 
 	// CONNECTION TRY/CATCH
 	try{
-		$db = new PDO('mysql:host='.$host.';dbname='.$dbname.'', $user, $password);
+		$db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $password);
 	}catch (Exception $e){
 		echo 'Impossible de se connecter à la base de donnée';
 		die('Erreur : ' . $e->getMessage());
 	}
-	// Forcer encodage en UTF-8
-	$db->exec("SET CHARACTER SET utf8");
 	
 	// Affichage des erreurs d'accès (idéal en conception, remplacer par ERRMODE_WARNING avant l'envoi en ligne )
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
