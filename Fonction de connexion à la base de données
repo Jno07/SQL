@@ -1,43 +1,43 @@
 <?php
 
-	// ----------------------------------------------------------
-	// DB.PHP v2.0 18/06/2015
-	// Connection à une base de données MySQL via PHP
- 	// Utilisation de variables pour les logins
- 	// Détermination automatique du serveur local ou distant
-	// ----------------------------------------------------------
+    // ----------------------------------------------------------
+    // DB.PHP v2.0 18/06/2015
+    // Connection à une base de données MySQL via PHP
+    // Utilisation de variables pour les logins
+    // Détermination automatique du serveur local ou distant
+    // ----------------------------------------------------------
 
 
-	// Nom de la base de donnée auquel se connecter
-	$dbname = 'yourdatabasename';
+    // Nom de la base de donnée auquel se connecter
+    $dbname = 'yourdatabase';
 
 
-	// Détermination du serveur local ou distant
-	if($_SERVER['HTTP_HOST'] == 'localhost')
-	{
-		// Serveur LOCAL
-		$host = 'localhost'; 	// Hote
-		$user = 'root'; 	// Utilisateur 
-		$password = '';		// Mot de passe
-	}
-	else
-	{
-		// Serveur DISTANT
-		$host = 'yourdatabasename.mysql.db';	// Hote
-		$user = 'yourdatabasename';		// Utilisateur
-		$password = 'xaexaexaexaexae';		// Mot de passe
-	}
+    // Détermination du serveur local ou distant
+    if($_SERVER['HTTP_HOST'] == 'localhost')
+    {
+        // Serveur LOCAL
+        $host = 'localhost';                // Hote
+        $user = 'root';                     // Utilisateur 
+        $password = '';                     // Mot de passe (root pour les MAC)
+    }
+    else
+    {
+        // Serveur DISTANT
+        $host = 'yourdatabase.mysql.db';// Hote
+        $user = 'yourdatabase';         // Utilisateur
+        $password = 'xxxpasswordxxx';         // Mot de passe
+    }
 
-	// CONNECTION TRY/CATCH
-	try{
-		$db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $password);
-	}catch (Exception $e){
-		echo 'Impossible de se connecter à la base de donnée';
-		die('Erreur : ' . $e->getMessage());
-	}
-	
-	// Affichage des erreurs d'accès (idéal en conception, remplacer par ERRMODE_WARNING avant l'envoi en ligne )
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // CONNECTION TRY/CATCH
+    try{
+        $db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $password);
+    }catch (Exception $e){
+        echo 'Impossible de se connecter à la base de donnée';
+        die('Erreur : ' . $e->getMessage());
+    }
+
+    // Affichage des erreurs d'accès (idéal en conception, remplacer par ERRMODE_WARNING avant l'envoi en ligne )
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 ?>
 
