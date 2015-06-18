@@ -1,22 +1,46 @@
-<?php	
-	//Code d'ouverture de la base selon l'environnement de travail (local ou distant)
-	if($_SERVER['HTTP_HOST'] == 'localhost'){
-		try{
-			$db = new PDO('mysql:host=localhost;dbname=DATABASE', 'root', '');
-		}catch (Exception $e){
-			echo 'Impossible de se connecter à la base de donnée. Veuillez <a href="contact.php">contacter l\'administrateur</a>';
-			die();
-		}
-	}else{
-		try{
-			$db = new PDO('mysql:host=HOST;dbname=DATABASE', 'USER', 'PASSWORD');
-		}catch (Exception $e){
-			echo 'Impossible de se connecter à la base de donnée. Veuillez <a href="contact.php">contacter l\'administrateur</a>';
-			die();
-		}
+<?php
+
+	// ----------------------------------------------------------
+	// DB.PHP v2.0 18/06/2015
+	// Connection à une base de données MySQL via PHP
+ 	// Utilisation de variables pour les logins
+ 	// Détermination automatique du serveur local ou distant
+	// ----------------------------------------------------------
+
+
+	// Nom de la base de donnée auquel se connecter
+	$dbname = 'yourdatabasename';
+
+
+	// Détermination du serveur local ou distant
+	if($_SERVER['HTTP_HOST'] == 'localhost')
+	{
+		// Serveur LOCAL
+		$host = 'localhost'; 	// Hote
+		$user = 'root'; 	// Utilisateur 
+		$password = '';		// Mot de passe
 	}
-$db->exec("SET CHARACTER SET utf8");
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+	else
+	{
+		// Serveur DISTANT
+		$host = 'yourdatabasename.mysql.db';	// Hote
+		$user = 'yourdatabasename';		// Utilisateur
+		$password = 'xaexaexaexaexae';		// Mot de passe
+	}
+
+	// CONNECTION TRY/CATCH
+	try{
+		$db = new PDO('mysql:host='.$host.';dbname='.$dbname.'', $user, $password);
+	}catch (Exception $e){
+		echo 'Impossible de se connecter à la base de donnée';
+		die();
+	}
+	// Forcer encodage en UTF-8
+	$db->exec("SET CHARACTER SET utf8");
+	
+	// Affichage des erreurs d'accès (idéal en conception, remplacer par ERRMODE_WARNING avant l'envoi en ligne )
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 ?>
 
 Remarque : Penser à fermer chaque requête après utilisation avec la fonction closeCursor()
