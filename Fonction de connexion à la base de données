@@ -38,7 +38,7 @@
 
     // Affichage des erreurs d'accès (idéal en conception, remplacer par ERRMODE_WARNING avant l'envoi en ligne )
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Remarque : Penser à fermer chaque requête après utilisation avec la fonction closeCursor()
 
 ?>
-
-Remarque : Penser à fermer chaque requête après utilisation avec la fonction closeCursor()
